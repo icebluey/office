@@ -1,0 +1,23 @@
+<Configuration>
+  <Add SourcePath="absolute path to directory containing office\data" 
+       OfficeClientEdition="64" 
+       Channel="PerpetualVL2021">
+    <Product ID="ProPlus2021Volume">
+      <Language ID="en-us" />
+      <Language ID="zh-cn" />
+      <Language ID="zh-tw" />
+      <ExcludeApp ID="Access" />
+      <ExcludeApp ID="Lync" />
+      <ExcludeApp ID="OneDrive" />
+      <ExcludeApp ID="OneNote" />
+      <ExcludeApp ID="Outlook" />
+      <ExcludeApp ID="Publisher" />
+      <ExcludeApp ID="Teams" />
+    </Product>
+  </Add>
+  <Updates Enabled="TRUE"
+           UpdatePath="absolute path to directory containing office\data" />
+  <RemoveMSI />
+   <Display Level="Full" AcceptEULA="TRUE" />
+</Configuration>
+
