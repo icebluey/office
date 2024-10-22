@@ -4,6 +4,8 @@
 ```
 
 ```
+pushd "C:\Program Files\Microsoft Office\Office16"
+
 cscript ospp.vbs /act
 cscript ospp.vbs /inpkey:value
 cscript ospp.vbs /unpkey:value
