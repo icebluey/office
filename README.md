@@ -18,6 +18,25 @@ cscript ospp.vbs /dstatusall
 
 ```
 
+# delete
+```
+pushd "%USERPROFILE%\AppData\Local\Temp\"
+rmdir /S /Q "%USERPROFILE%\AppData\Local\Microsoft\Office"
+rmdir /S /Q "%USERPROFILE%\AppData\Local\Microsoft\Excel"
+rmdir /S /Q "%USERPROFILE%\AppData\Local\Microsoft\PowerPoint"
+rmdir /S /Q "%USERPROFILE%\AppData\Local\Microsoft\Word"
+rmdir /S /Q "%USERPROFILE%\AppData\Local\Microsoft\OneDrive"
+rmdir /S /Q "%USERPROFILE%\AppData\Roaming\Microsoft\Office"
+rmdir /S /Q "%USERPROFILE%\AppData\Roaming\Microsoft\Excel"
+rmdir /S /Q "%USERPROFILE%\AppData\Roaming\Microsoft\PowerPoint"
+rmdir /S /Q "%USERPROFILE%\AppData\Roaming\Microsoft\Word"
+rmdir /S /Q "%USERPROFILE%\AppData\Roaming\Microsoft\OneDrive"
+rmdir /S /Q "%USERPROFILE%\Documents\Custom Office Templates"
+rmdir /S /Q "%USERPROFILE%\Documents\自定义 Office 模板"
+
+```
+
+
 | Office Version | Office Product                  | Generic Key                   | Key Type      |
 |----------------|---------------------------------|-------------------------------|---------------|
 | v15.0 (2013)   | AccessRetail                    | B7RFY-7NXPK-Q4342-Y9X2H-3JX4X | Retail        |
@@ -290,3 +309,4 @@ cscript ospp.vbs /dstatusall
 |	Publisher 2016	|	F47MM-N3XJP-TQXJ9-BP99D-8K837	|
 |	Skype for Business 2016	|	869NQ-FJ69K-466HW-QYCP2-DDBV6	|
 |	Word 2016	|	WXY84-JN2Q9-RBCCQ-3Q3J3-3PFJ6	|
+
