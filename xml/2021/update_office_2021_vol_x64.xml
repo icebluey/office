@@ -15,9 +15,7 @@
       <ExcludeApp ID="Teams" />
     </Product>
   </Add>
-  <Updates Enabled="TRUE"
-           UpdatePath="absolute path to directory containing office\data" />
+  <Updates Enabled="FALSE" />
   <RemoveMSI />
    <Display Level="Full" AcceptEULA="TRUE" />
 </Configuration>
-
