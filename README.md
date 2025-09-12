@@ -1,3 +1,13 @@
+# Generating a UUID in Lowercase on Windows 11
+```
+# Method 1: Using PowerShell (Recommended for Simplicity)
+[guid]::NewGuid().ToString().ToLower()
+
+# Method 2: Using Command Prompt
+powershell -c "[guid]::NewGuid().ToString().ToLower()"
+```
+
+
 # office
 ```
 .\setup.exe /configure filename.xml
