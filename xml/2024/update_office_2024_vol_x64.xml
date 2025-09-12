@@ -1,7 +1,5 @@
 <Configuration>
-  <Add SourcePath="absolute path to directory containing office\data" 
-       OfficeClientEdition="64" 
-       Channel="PerpetualVL2024">
+  <Add SourcePath="absolute path to directory containing office\data" OfficeClientEdition="64" Channel="PerpetualVL2024">
     <Product ID="ProPlus2024Volume">
       <Language ID="en-us" />
       <Language ID="zh-cn" />
@@ -20,4 +18,3 @@
   <RemoveMSI />
    <Display Level="Full" AcceptEULA="TRUE" />
 </Configuration>
-
