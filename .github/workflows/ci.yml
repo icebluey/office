@@ -1,0 +1,63 @@
+name: CI
+on:
+  #push:
+  #  branches: [ "master" ]
+  #pull_request:
+  #  branches: [ "master" ]
+  schedule:
+    - cron: '1 22 * * *'
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup
+        run: |
+          sudo apt update -y -qqq
+          sudo apt autoremove --purge -y needrestart || : 
+          sudo systemctl stop postgresql.service mysql.service mysqld.service >/dev/null 2>&1 || : 
+          sudo systemctl disable postgresql.service mysql.service mysqld.service >/dev/null 2>&1 || : 
+          sudo apt autoremove --purge -y '^postgresql.*' '^mysql.*'
+          sudo systemctl stop snapd.service snapd.socket >/dev/null 2>&1 || : 
+          sudo systemctl disable snapd.service snapd.socket >/dev/null 2>&1 || : 
+          sudo apt autoremove --purge -y '^php.*' '^lxd.*' '^snap.*'
+          sudo rm -fr ~/snap /snap /var/snap /var/lib/snapd /var/cache/snapd /usr/lib/snapd
+          sudo systemctl stop docker.service containerd.service >/dev/null 2>&1 || : 
+          sudo systemctl disable docker.service containerd.service >/dev/null 2>&1 || : 
+          sudo apt autoremove --purge -y '^docker.*' '^container.*' '^podman.*' crun runc
+          sudo rm -fr /var/lib/docker* /var/lib/containerd /usr/libexec/docker
+          sudo apt autoremove --purge -y --allow-remove-essential $(dpkg -l | grep -i -E 'firefox|firebird|google-chrome-stable' | awk '{print $2}' | sort -V | uniq | paste -sd" ")
+          sudo apt install -y chrony; sudo systemctl start chrony; sleep 10; sudo chronyc makestep
+          sudo apt install -y -qqq bash wget ca-certificates curl git openssl binutils coreutils util-linux findutils diffutils patch sed gawk grep file gzip bzip2 xz-utils tar
+          sudo apt reinstall -y -qqq bash wget ca-certificates curl git openssl binutils coreutils util-linux findutils diffutils patch sed gawk grep file gzip bzip2 xz-utils tar
+          #sudo apt upgrade -y -qqq
+          sudo ln -svf bash /bin/sh
+          sudo rm -fr /tmp/*
+          sudo df -Th
+
+      - name: Download
+        run: |
+          sudo rm -fr /tmp/_output
+          sudo mkdir /tmp/_output
+          cd /tmp/_output
+          sudo /bin/bash dl-office.sh -c current -a x64
+
+      - name: Generate release tag env
+        run: |
+          _release_ver="$(/bin/ls -1 /tmp/_output/Office*.7z | sed 's/.*-\(current\|[0-9]\{4\}\)-//g; s/-x.*//g' | sort -V | tail -n 1)"
+          echo "_release_ver=${_release_ver}" >> $GITHUB_ENV
+
+      - name: Upload files
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env._release_ver }}
+          files: /tmp/_output/*.7z*
+          overwrite_files: true
+
+      - name: Delete
+        run: |
+          sed -e "/^_release_ver=/d" -i $GITHUB_ENV
+          sudo rm -fr /tmp/_output
+
