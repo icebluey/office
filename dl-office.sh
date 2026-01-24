@@ -781,7 +781,7 @@ main() {
         [[ -n "$size" ]] && log INFO "  Size: $size"
     fi
     
-    split -b 1G -d -a 3 --numeric-suffixes=1 "$output_path.7z" "$output_path.7z".
+    split -b 1500M -d -a 3 --numeric-suffixes=1 "$output_path.7z" "$output_path.7z".
     sleep 2
     rm -f "$output_path.7z"
     /bin/ls -lh "$output_path.7z"*
