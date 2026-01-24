@@ -587,7 +587,7 @@ create_package() {
     log INFO "Creating package archive..."
     
     if ! (cd "$(dirname "$package_dir")" && \
-         /usr/bin/7z a -r -mmt=$(nproc) -mx9 -t7z -v1g "$output_path.7z" \
+         /usr/bin/7z a -r -mmt=$(nproc) -mx9 -t7z -v1800m "$output_path.7z" \
              "$(basename "$package_dir")"); then
         log ERROR "Failed to create package archive"
         return 1
@@ -599,7 +599,7 @@ create_package() {
         "$(basename "$output_path").7z.sha256"
     popd >/dev/null
     
-    log SUCCESS "Package created: $output_path.7z"
+    #log SUCCESS "Package created: $output_path.7z"
     log INFO "Package checksum: $output_path.7z.sha256"
     return 0
 }
@@ -771,15 +771,16 @@ main() {
     fi
     echo
     log INFO "Files created:"
-    log INFO "  Archive: $output_path.7z"
-    log INFO "  Checksum: $output_path.7z.sha256"
-    
+    #log INFO "  Archive: $output_path.7z"
+    #log INFO "  Checksum: $output_path.7z.sha256"
     # Display file size
-    if command -v du >/dev/null 2>&1; then
-        local size
-        size=$(du -h "$output_path.7z".[0-9]* 2>/dev/null | cut -f1)
-        [[ -n "$size" ]] && log INFO "  Size: $size"
-    fi
+    #if command -v du >/dev/null 2>&1; then
+    #    local size
+    #    size=$(du -h "$output_path.7z" 2>/dev/null | cut -f1)
+    #    [[ -n "$size" ]] && log INFO "  Size: $size"
+    #fi
+    
+    /bin/ls -lh "$output_path.7z"*
     
     echo
     return 0
