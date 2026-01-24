@@ -45,7 +45,7 @@ jobs:
 
       - name: Generate release tag env
         run: |
-          _release_ver="$(/bin/ls -1 /tmp/_output/Office*.7z | sed 's/.*-\(current\|[0-9]\{4\}\)-//g; s/-x.*//g' | sort -V | tail -n 1)"
+          _release_ver="$(/bin/ls -1 /tmp/_output/Office*.7z* | sed 's/.*-\(current\|[0-9]\{4\}\)-//g; s/-x.*//g' | sort -V | tail -n 1)"
           echo "_release_ver=${_release_ver}" >> $GITHUB_ENV
 
       - name: Upload files
