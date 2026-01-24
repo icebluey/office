@@ -777,7 +777,7 @@ main() {
     # Display file size
     if command -v du >/dev/null 2>&1; then
         local size
-        size=$(du -h "$output_path.7z" 2>/dev/null | cut -f1)
+        size=$(du -h "$output_path.7z".[0-9]* 2>/dev/null | cut -f1)
         [[ -n "$size" ]] && log INFO "  Size: $size"
     fi
     
