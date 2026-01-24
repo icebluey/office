@@ -112,9 +112,6 @@ _install_7z() {
 
 set -euo pipefail
 
-_install_jq
-_install_7z
-
 # Configuration constants
 readonly SCRIPT_NAME="${0##*/}"
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -701,7 +698,10 @@ main() {
         usage
         exit 1
     fi
-    
+
+    _install_jq
+    _install_7z
+
     # Check dependencies
     check_dependencies || exit 1
     

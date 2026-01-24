@@ -41,8 +41,7 @@ jobs:
         run: |
           sudo rm -fr /tmp/_output
           sudo mkdir /tmp/_output
-          cd /tmp/_output
-          sudo /bin/bash dl-office.sh -c current -a x64
+          sudo /bin/bash dl-office.sh -c current -a x64 -o /tmp/_output
 
       - name: Generate release tag env
         run: |
