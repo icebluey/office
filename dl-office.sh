@@ -587,7 +587,7 @@ create_package() {
     log INFO "Creating package archive..."
     
     if ! (cd "$(dirname "$package_dir")" && \
-         /usr/bin/7z a -r -mmt=$(nproc) -mx9 -t7z "$output_path.7z" \
+         /usr/bin/7z a -r -mmt=$(nproc) -mx9 -t7z -v1g "$output_path.7z" \
              "$(basename "$package_dir")"); then
         log ERROR "Failed to create package archive"
         return 1
@@ -595,7 +595,7 @@ create_package() {
 
     # Generate package checksum
     pushd "$(dirname "$output_path")" >/dev/null || return 1
-    openssl dgst -r -sha256 "$(basename "$output_path").7z" > \
+    openssl dgst -r -sha256 "$(basename "$output_path").7z"* > \
         "$(basename "$output_path").7z.sha256"
     popd >/dev/null
     
