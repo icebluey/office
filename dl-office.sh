@@ -781,10 +781,13 @@ main() {
         [[ -n "$size" ]] && log INFO "  Size: $size"
     fi
     
-    split -b 1500M -d -a 3 --numeric-suffixes=1 "$output_path.7z" "$output_path.7z".
-    sleep 2
-    rm -f "$output_path.7z"
-    /bin/ls -lh "$output_path.7z"*
+    # 2GiB = 2147483648
+    if [ $(stat -c%s "$output_path.7z" 2>/dev/null) -ge 2147483648 ]; then
+        split -b 2GB -d -a 3 --numeric-suffixes=1 "$output_path.7z" "$output_path.7z".
+        sleep 2
+        rm -f "$output_path.7z"
+        /bin/ls -lh "$output_path.7z"*
+    fi
 
     echo
     return 0
