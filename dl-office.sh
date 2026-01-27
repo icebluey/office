@@ -591,6 +591,7 @@ create_package() {
     log INFO "Creating package archive..."
     
     if ! (cd "$(dirname "$package_dir")" && \
+         du -sh "$(basename "$package_dir")"/ && \
          /usr/bin/7z a -r -mmt$(($(nproc) - 1)) -mx9 -t7z "$output_path.7z" \
              "$(basename "$package_dir")"); then
         log ERROR "Failed to create package archive"
