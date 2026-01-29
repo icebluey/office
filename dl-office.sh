@@ -12,8 +12,7 @@ _install_jq() {
     mv jq-linux-amd64 jq
     chmod 0755 jq
     file jq | sed -n -E 's/^(.*):[[:space:]]*ELF.*, not stripped.*/\1/p' | xargs --no-run-if-empty -I '{}' strip '{}'
-    rm -f /usr/bin/jq
-    rm -f /usr/local/bin/jq
+    rm -f /usr/bin/jq /usr/local/bin/jq
     install -v -c -m 0755 jq /usr/bin/jq
     cp -f /usr/bin/jq /usr/local/bin/jq
     /usr/bin/jq --version 2>/dev/null || true
@@ -31,9 +30,11 @@ _install_7z() {
     #rm -f *.tar*
     #file 7zzs | sed -n -E 's/^(.*):[[:space:]]*ELF.*, not stripped.*/\1/p' | xargs --no-run-if-empty -I '{}' strip '{}'
     #rm -f 7z && mv 7zzs 7z
-    wget -q -c -t 9 -T 9 'https://github.com/icebluey/7zip-zstd/releases/latest/download/7z'
-    rm -f /usr/bin/7z
-    rm -f /usr/local/bin/7z
+    wget -q -c -t 9 -T 9 'https://github.com/icebluey/7zip-zstd/releases/latest/download/7z.tar'
+    wget -q -c -t 9 -T 9 'https://github.com/icebluey/7zip-zstd/releases/latest/download/7z.tar.sha256'
+    sha256sum -c 7z.tar.sha256
+    tar -xof 7z.tar
+    rm -f /usr/bin/7z /usr/local/bin/7z
     install -v -c -m 0755 7z /usr/bin/7z
     cp -f /usr/bin/7z /usr/local/bin/7z
     /usr/bin/7z --version 2>/dev/null || true
