@@ -16,7 +16,7 @@
       <ExcludeApp ID="Bing" />
     </Product>
   </Add>
-  <Updates Enabled="FALSE" />
+  <Updates Enabled="TRUE" UpdatePath="X:\office\Office-current" />
   <RemoveMSI />
   <Display Level="Full" AcceptEULA="TRUE" />
 </Configuration>
