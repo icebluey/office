@@ -10,6 +10,9 @@ powershell -c "[guid]::NewGuid().ToString().ToLower()"
 
 # office
 ```
+copy /b Office-current-16.0.19628.20150-x64.7z.0* Office-current-16.0.19628.20150-x64.7z
+7z x Office-current-16.0.19628.20150-x64.7z
+
 .\setup.exe /configure filename.xml
 ```
 
