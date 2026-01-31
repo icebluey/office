@@ -10,7 +10,16 @@ powershell -c "[guid]::NewGuid().ToString().ToLower()"
 
 # office
 ```
-copy /b Office-current-16.0.19628.20150-x64.7z.0* Office-current-16.0.19628.20150-x64.7z
+# linux
+cat file.7z.* > file.7z
+
+# windows cmd
+copy /b file.7z.001+file.7z.002+file.7z.003 file.7z
+copy /b file.7z.* file.7z
+# windows powershell
+cmd /c copy /b file.7z.001+file.7z.002+file.7z.003 file.7z
+cmd /c copy /b file.7z.* file.7z
+
 calchash -sha256 -c Office-current-16.0.19628.20150-x64.7z.sha256
 7z x Office-current-16.0.19628.20150-x64.7z
 
