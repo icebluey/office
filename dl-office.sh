@@ -601,8 +601,10 @@ create_package() {
 
     # Generate package checksum
     pushd "$(dirname "$output_path")" >/dev/null || return 1
-    openssl dgst -r -sha256 "$(basename "$output_path").7z" > \
-        "$(basename "$output_path").7z.sha256"
+    #openssl dgst -r -sha256 "$(basename "$output_path").7z" > "$(basename "$output_path").7z.sha256"
+    wget -q -c -t 9 -T 9 'https://github.com/icebluey/calchash/releases/latest/download/calchash' -O /usr/local/bin/calchash
+    chmod 0755 /usr/local/bin/calchash
+    /usr/local/bin/calchash --tag -b -sha256 "$(basename "$output_path").7z" -o "$(basename "$output_path").7z.sha256"
     popd >/dev/null
     
     log SUCCESS "Package created: $output_path.7z"
