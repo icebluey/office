@@ -15,7 +15,7 @@ cat file.7z.00* > file.7z
 
 # windows cmd
 copy /b file.7z.001+file.7z.002+file.7z.003 file.7z
-copy /b file.7z.* file.7z
+copy /b file.7z.00* file.7z
 # windows powershell
 cmd /c copy /b file.7z.001+file.7z.002+file.7z.003 file.7z
 cmd /c copy /b file.7z.* file.7z
