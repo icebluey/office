@@ -11,7 +11,7 @@ powershell -c "[guid]::NewGuid().ToString().ToLower()"
 # office
 ```
 # linux
-cat file.7z.* > file.7z
+cat file.7z.00* > file.7z
 
 # windows cmd
 copy /b file.7z.001+file.7z.002+file.7z.003 file.7z
